@@ -6,20 +6,24 @@ Para esse projeto, além de mudarmos o JSON para o JSON Server, vamos permitir o
 
 ## Informações do trabalho
 
-- Nome:
-- Matricula:
-- Proposta de projeto escolhida:
-- Breve descrição sobre seu projeto:
+- Nome: Lucas Sivolella
+- Matricula: 902408
+- Proposta de projeto escolhida: Pessoas e Produções
+- Breve descrição sobre seu projeto: Site feito as linguaguens HTML e CSS e com o auxílio da biblioteca Bootstrap. Site capaz de realizar o operações através do JQuery  e carregamento dinâmico de informações.
 
 **Print dos testes da API com Postman ou similar**
 
-<< COLOQUE A IMAGEM GET AQUI >>
+**GET /livros**
+![GET Livros](/public/assets/img/Tests/test_get.png)
 
-<< COLOQUE A IMAGEM POST AQUI >>
+**POST /livros**
+![Post Livros](/public/assets/img/Tests/test_post.png)
 
-<< COLOQUE A IMAGEM PUT AQUI >>
+**PUT /livros**
+![PUT Livros](/public/assets/img/Tests/test_put.png)
 
-<< COLOQUE A IMAGEM DELETE AQUI >>
+**DELETE /livros**
+![DELETE Livros](/public/assets/img/Tests/test_delete.png)
 
 **Print da aba NETWORK com requisições Fetch/XHR POST e GET**
 
