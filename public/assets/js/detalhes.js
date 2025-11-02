@@ -1,11 +1,7 @@
 const detalhesLivro = document.querySelector(".detalhes-livro-container");
 const secundarioContainer = document.querySelector("#secundario-container");
-
-document.addEventListener("DOMContentLoaded", () => {
-    const livro = armazenarReferenciaLivro();
-    popularDetalhesLivro(livro);
-    popularIlustracoes(livro);
-});
+const btn_editar = document.querySelector("#btn-editar");
+const btn_excluir = document.querySelector("#btn-excluir");
 
 function armazenarReferenciaLivro() {
     const params = new URLSearchParams(window.location.search);
@@ -35,6 +31,14 @@ function popularDetalhesLivro() {
             <p><strong>Páginas:</strong> ${livro.paginas}</p>
         </div>
     `;
+
+    document.querySelector("#btn-excluir")?.addEventListener("click", async () => {
+        if (confirm("Deseja realmente excluir este livro?")) {
+            await fetch(`http://localhost:3000/livros/${livro.id}`, { method: "DELETE" });
+            alert("Livro excluído com sucesso!");
+            window.location.href = "/index.html";
+        }
+    });
 }
 
 function popularIlustracoes() {
@@ -85,3 +89,24 @@ function popularIlustracoes() {
         secundarioContainer.innerHTML += `<p>Nenhuma ilustração disponível.</p>`;
     }
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+    await carregarLivros();
+    const livro = armazenarReferenciaLivro();
+    popularDetalhesLivro(livro);
+    popularIlustracoes(livro);
+
+    if (btn_editar && livro) {
+        btn_editar.href = `/assets/html/cadastro_livros.html?id=${livro.id}`;
+    }
+
+    if (btn_excluir && livro) {
+        btnExcluir.addEventListener("click", async () => {
+            if (confirm("Deseja realmente excluir este livro?")) {
+                await fetch(`http://localhost:3001/livros/${livro.id}`, { method: "DELETE" });
+                alert("Livro excluído com sucesso!");
+                window.location.href = "/index.html";
+            }
+        });
+    }
+});

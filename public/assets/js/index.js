@@ -3,12 +3,6 @@ const carouselIndicators = document.querySelector(".carousel-indicators");
 const carouselInner = document.querySelector(".carousel-inner");
 const cardsGrid = document.querySelector(".livros-grid");
 
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("test");
-    popularCarousel();
-    popularCards();
-});
-
 function popularCarousel() {
     if (!carouselSlide || !carouselIndicators || !carouselInner) return;
 
@@ -71,9 +65,40 @@ function popularCards() {
                     <p class="card-text">${livro.autor}</p>
                     <p class="card-text">Ano: ${livro.ano}</p>
                     <p class="card-text">Páginas: ${livro.paginas}</p>
+                    <div class="mt-4 d-flex align-items-center justify-content-center">
+                        <a id="btn-editar" href="/assets/html/cadastro_livros.html?id=${livro.id}" class="btn btn-warning me-2">Editar</a>
+                        <button class="btn btn-danger" data-id="${livro.id}">Excluir</button>
+                    </div>
                 </div>
             </a>
         </div>`;
         cardsGrid.appendChild(col);
     });
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+    await carregarLivros();
+    popularCarousel();
+    popularCards();
+});
+
+cardsGrid.addEventListener("click", async (event) => {
+    const livroId = event.target.dataset.id;
+    if (!livroId) return;
+
+    if (event.target.matches(".btn-warning")) {
+        event.preventDefault();
+        window.location.href = `/assets/html/cadastro_livros.html?id=${livroId}`;
+    }
+
+    if (event.target.matches(".btn-danger")) {
+        event.preventDefault();
+        if (confirm("Deseja realmente excluir este livro?")) {
+            await fetch(`http://localhost:3000/livros/${livroId}`, { method: "DELETE" });
+            alert("Livro excluído com sucesso!");
+            await carregarLivros();
+            popularCarousel();
+            popularCards();
+        }
+    }
+});
