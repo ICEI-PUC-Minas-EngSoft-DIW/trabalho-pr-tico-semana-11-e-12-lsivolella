@@ -27,7 +27,11 @@ Para esse projeto, além de mudarmos o JSON para o JSON Server, vamos permitir o
 
 **Print da aba NETWORK com requisições Fetch/XHR POST e GET**
 
-<<  COLOQUE A IMAGEM AQUI >>
+**GET /Fetch/XHR**
+![GET Fetch-XHR](/public/assets/img/Tests/test_fetch-xhr_get.png)
+
+**POST /Fetch/XHR**
+![POST Fetch-XHR](/public/assets/img/Tests/test_fetch-xhr_post.png)
 
 ## **Orientações Gerais**
 
